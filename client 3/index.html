@@ -1,0 +1,3539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>COSMIC | PCB Design, Manufacturing & Assembly</title>
+
+    <meta name="description"
+        content="COSMIC provides PCB design, manufacturing and assembly solutions from Coimbatore.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    /* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #05070a;
+    color: #f5f7fa;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+.container {
+    width: min(1200px, 90%);
+    margin: auto;
+}
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root {
+
+    --bg: #05070a;
+    --bg-light: #0a0e13;
+    --card: #0d1218;
+
+    --text: #f5f7fa;
+    --muted: #8c96a3;
+
+    --accent: #39d5ff;
+    --accent-dark: #087e9d;
+
+    --border: rgba(255, 255, 255, 0.09);
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    background: rgba(5, 7, 10, 0.75);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid transparent;
+
+    transition: 0.3s ease;
+
+}
+
+.navbar.scrolled {
+    border-bottom-color: var(--border);
+    background: rgba(5, 7, 10, 0.94);
+}
+
+
+.nav-container {
+
+    height: 78px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 19px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+}
+
+.logo-mark {
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: 1px solid var(--accent);
+
+    color: var(--accent);
+
+    font-size: 17px;
+
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+}
+
+
+.nav-links a {
+
+    font-size: 12px;
+
+    color: var(--muted);
+
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+
+    transition: 0.3s;
+
+}
+
+
+.nav-links a:hover,
+.nav-links a.active {
+
+    color: var(--text);
+
+}
+
+
+.nav-quote {
+
+    padding: 11px 17px;
+
+    border: 1px solid var(--accent);
+
+    color: var(--accent) !important;
+
+}
+
+
+.menu-btn {
+
+    display: none;
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+
+}
+
+
+.menu-btn span {
+
+    width: 27px;
+    height: 2px;
+
+    background: white;
+
+    display: block;
+
+    margin: 5px;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    padding-top: 80px;
+
+}
+
+
+.hero-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+
+        linear-gradient(
+            rgba(57, 213, 255, 0.035) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(57, 213, 255, 0.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 70px 70px;
+
+}
+
+
+.hero-grid::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 70% 50%,
+            rgba(57, 213, 255, 0.13),
+            transparent 35%
+        );
+
+}
+
+
+.hero-container {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: grid;
+
+    grid-template-columns: 1fr 0.9fr;
+
+    gap: 60px;
+
+    align-items: center;
+
+}
+
+
+.eyebrow {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 24px;
+
+}
+
+
+.pulse {
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 0 0 5px rgba(57, 213, 255, 0.1),
+        0 0 20px var(--accent);
+
+}
+
+
+.hero h1 {
+
+    font-size: clamp(48px, 6vw, 82px);
+
+    line-height: 0.95;
+
+    letter-spacing: -4px;
+
+    font-weight: 800;
+
+}
+
+
+.hero h1 span {
+
+    display: block;
+
+    color: var(--accent);
+
+}
+
+
+.hero h2 {
+
+    margin-top: 20px;
+
+    font-size: clamp(20px, 2.2vw, 30px);
+
+    line-height: 1.2;
+
+    font-weight: 600;
+
+    color: #d5dce3;
+
+}
+
+
+.hero-description {
+
+    margin-top: 28px;
+
+    font-size: 17px;
+
+    color: #dfe5ea;
+
+}
+
+
+.hero-text {
+
+    max-width: 620px;
+
+    margin-top: 15px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+}
+
+
+.hero-buttons {
+
+    display: flex;
+
+    gap: 13px;
+
+    margin-top: 34px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.btn {
+
+    padding: 15px 22px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    transition: 0.3s;
+
+}
+
+
+.btn-primary {
+
+    background: var(--accent);
+
+    color: #031016;
+
+}
+
+
+.btn-primary:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 35px rgba(57, 213, 255, 0.2);
+
+}
+
+
+.btn-outline {
+
+    border: 1px solid var(--border);
+
+    color: white;
+
+}
+
+
+.btn-outline:hover {
+
+    border-color: var(--accent);
+
+    color: var(--accent);
+
+}
+
+
+/* =========================
+   PCB VISUAL
+========================= */
+
+.hero-visual {
+
+    min-height: 500px;
+
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+
+}
+
+
+.pcb-board {
+
+    width: 410px;
+    height: 300px;
+
+    position: relative;
+
+    transform: rotate(-8deg);
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d3540,
+            #071b21
+        );
+
+    border: 1px solid rgba(57, 213, 255, 0.5);
+
+    box-shadow:
+        0 0 60px rgba(57, 213, 255, 0.12),
+        inset 0 0 40px rgba(57, 213, 255, 0.06);
+
+}
+
+
+.pcb-board::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 12px;
+
+    border: 1px solid rgba(57, 213, 255, 0.16);
+
+}
+
+
+.pcb-chip {
+
+    position: absolute;
+
+    display: grid;
+
+    place-items: center;
+
+    background: #101820;
+
+    border: 1px solid #41616b;
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.chip-main {
+
+    width: 110px;
+    height: 75px;
+
+    left: 145px;
+    top: 110px;
+
+}
+
+
+.chip {
+
+    width: 50px;
+    height: 42px;
+
+    background: #111920;
+
+    border: 1px solid #38515a;
+
+}
+
+
+.chip-one {
+    top: 35px;
+    left: 50px;
+}
+
+.chip-two {
+    right: 55px;
+    top: 60px;
+}
+
+.chip-three {
+    left: 60px;
+    bottom: 45px;
+}
+
+
+.pcb-line {
+
+    position: absolute;
+
+    height: 1px;
+
+    background: var(--accent);
+
+    opacity: 0.65;
+
+    box-shadow: 0 0 8px var(--accent);
+
+}
+
+
+.line-one {
+
+    width: 130px;
+
+    top: 70px;
+    left: 100px;
+
+    transform: rotate(20deg);
+
+}
+
+
+.line-two {
+
+    width: 150px;
+
+    right: 80px;
+    top: 135px;
+
+    transform: rotate(-20deg);
+
+}
+
+
+.line-three {
+
+    width: 120px;
+
+    left: 100px;
+    bottom: 85px;
+
+    transform: rotate(-15deg);
+
+}
+
+
+.line-four {
+
+    width: 100px;
+
+    right: 90px;
+    bottom: 60px;
+
+    transform: rotate(30deg);
+
+}
+
+
+.pcb-dot {
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+    box-shadow: 0 0 10px var(--accent);
+
+}
+
+
+.dot-one {
+    top: 55px;
+    left: 70px;
+}
+
+.dot-two {
+    top: 135px;
+    right: 45px;
+}
+
+.dot-three {
+    bottom: 40px;
+    left: 40px;
+}
+
+.dot-four {
+    bottom: 80px;
+    right: 70px;
+}
+
+.dot-five {
+    top: 40px;
+    right: 130px;
+}
+
+
+.floating-card {
+
+    position: absolute;
+
+    background: rgba(8, 13, 18, 0.9);
+
+    border: 1px solid var(--border);
+
+    backdrop-filter: blur(15px);
+
+    padding: 15px 18px;
+
+}
+
+
+.floating-card small {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.floating-card strong {
+
+    display: block;
+
+    font-size: 11px;
+
+    margin-top: 4px;
+
+}
+
+
+.card-top {
+
+    top: 70px;
+    right: 0;
+
+}
+
+
+.card-bottom {
+
+    bottom: 60px;
+    left: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+}
+
+
+/* =========================
+   SCROLL
+========================= */
+
+.scroll-indicator {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.scroll-indicator span {
+
+    width: 30px;
+
+    height: 1px;
+
+    background: var(--accent);
+
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+
+    padding: 130px 0;
+
+}
+
+
+.section-heading {
+
+    max-width: 750px;
+
+    margin-bottom: 65px;
+
+}
+
+
+.section-number {
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 700;
+
+    margin-bottom: 18px;
+
+}
+
+
+.section-heading h2 {
+
+    font-size: clamp(35px, 4vw, 55px);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+}
+
+
+.section-heading h2 span {
+
+    display: block;
+
+    color: var(--muted);
+
+}
+
+
+.section-heading p {
+
+    color: var(--muted);
+
+    margin-top: 20px;
+
+    max-width: 650px;
+
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-section {
+
+    background: #080c11;
+
+}
+
+
+.about-grid {
+
+    display: grid;
+
+    grid-template-columns: 0.9fr 1.1fr;
+
+    gap: 80px;
+
+    align-items: center;
+
+}
+
+
+.image-placeholder {
+
+    height: 470px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+
+    background:
+        radial-gradient(
+            circle at center,
+            #12333c,
+            #071014 60%,
+            #05070a
+        );
+
+}
+
+
+.image-label {
+
+    position: absolute;
+
+    left: 25px;
+    bottom: 25px;
+
+    z-index: 3;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.image-label span {
+
+    color: var(--accent);
+
+    margin-right: 10px;
+
+}
+
+
+.pcb-pattern {
+
+    position: absolute;
+
+    inset: 50px;
+
+    border: 1px solid rgba(57, 213, 255, 0.15);
+
+    transform: rotate(10deg);
+
+}
+
+
+.pcb-pattern div {
+
+    position: absolute;
+
+    height: 1px;
+
+    width: 70%;
+
+    background: var(--accent);
+
+    opacity: 0.35;
+
+}
+
+
+.pcb-pattern div:nth-child(1) {
+    top: 20%;
+    left: 10%;
+}
+
+.pcb-pattern div:nth-child(2) {
+    top: 40%;
+    left: 30%;
+}
+
+.pcb-pattern div:nth-child(3) {
+    top: 60%;
+    left: 5%;
+}
+
+.pcb-pattern div:nth-child(4) {
+    top: 75%;
+    left: 20%;
+}
+
+.pcb-pattern div:nth-child(5) {
+    top: 30%;
+    left: 50%;
+}
+
+
+.about-content p {
+
+    color: var(--muted);
+
+    font-size: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.about-content .large-text {
+
+    color: #e4e9ed;
+
+    font-size: 20px;
+
+    line-height: 1.6;
+
+}
+
+
+.text-link {
+
+    display: inline-flex;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+    color: var(--accent);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================
+   CAPABILITIES
+========================= */
+
+.capabilities-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.capability-card {
+
+    min-height: 270px;
+
+    padding: 30px;
+
+    position: relative;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    transition: 0.4s ease;
+
+    overflow: hidden;
+
+}
+
+
+.capability-card:hover {
+
+    transform: translateY(-7px);
+
+    border-color: rgba(57, 213, 255, 0.45);
+
+}
+
+
+.card-number {
+
+    color: #4f5963;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.capability-icon {
+
+    margin-top: 35px;
+
+    color: var(--accent);
+
+    font-size: 24px;
+
+}
+
+
+.capability-card h3 {
+
+    margin-top: 15px;
+
+    font-size: 15px;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+.capability-card p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 10px;
+
+    max-width: 280px;
+
+}
+
+
+.card-arrow {
+
+    position: absolute;
+
+    right: 25px;
+    bottom: 20px;
+
+    color: var(--accent);
+
+    font-size: 20px;
+
+}
+
+
+/* =========================
+   WORKFLOW
+========================= */
+
+.workflow-section {
+
+    background: #080c11;
+
+}
+
+
+.workflow {
+
+    position: relative;
+
+    max-width: 850px;
+
+    margin: auto;
+
+}
+
+
+.workflow-line {
+
+    position: absolute;
+
+    left: 28px;
+
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+
+    background: linear-gradient(
+        to bottom,
+        var(--accent),
+        rgba(57, 213, 255, 0.05)
+    );
+
+}
+
+
+.workflow-step {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+    position: relative;
+
+    min-height: 100px;
+
+}
+
+
+.workflow-step > span {
+
+    width: 57px;
+    height: 57px;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--accent);
+
+    background: var(--bg);
+
+    color: var(--accent);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 11px;
+
+    z-index: 2;
+
+}
+
+
+.workflow-step small {
+
+    color: var(--accent);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.workflow-step h3 {
+
+    font-size: 17px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =========================
+   WHY
+========================= */
+
+.why-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1px;
+
+    background: var(--border);
+
+}
+
+
+.why-card {
+
+    background: var(--bg);
+
+    padding: 35px;
+
+    min-height: 190px;
+
+}
+
+
+.why-card span {
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+}
+
+
+.why-card h3 {
+
+    margin-top: 25px;
+
+    font-size: 16px;
+
+}
+
+
+.why-card p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 10px;
+
+}
+
+
+/* =========================
+   APPLICATIONS
+========================= */
+
+.applications-section {
+
+    background: #080c11;
+
+}
+
+
+.applications-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.application-item {
+
+    padding: 25px 5px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+}
+
+
+.application-item:nth-child(odd) {
+
+    border-right: 1px solid var(--border);
+
+}
+
+
+.application-item span {
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+}
+
+
+/* =========================
+   QUALITY
+========================= */
+
+.quality-section {
+
+    background:
+        radial-gradient(
+            circle at 50% 0,
+            rgba(57, 213, 255, 0.08),
+            transparent 40%
+        );
+
+}
+
+
+.quality-container {
+
+    display: grid;
+
+    grid-template-columns: 0.7fr 1.3fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+}
+
+
+.quality-content h2 {
+
+    font-size: clamp(35px, 4vw, 55px);
+
+    line-height: 1.05;
+
+}
+
+
+.quality-content h2 span {
+
+    display: block;
+
+    color: var(--accent);
+
+}
+
+
+.quality-content p {
+
+    color: var(--muted);
+
+    margin-top: 20px;
+
+}
+
+
+.quality-process {
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+}
+
+
+.quality-step {
+
+    padding: 18px;
+
+    border: 1px solid var(--border);
+
+    background: var(--card);
+
+    flex: 1;
+
+    min-width: 130px;
+
+}
+
+
+.quality-step span {
+
+    display: block;
+
+    color: var(--accent);
+
+    font-size: 9px;
+
+}
+
+
+.quality-step strong {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 11px;
+
+}
+
+
+.quality-arrow {
+
+    color: var(--accent);
+
+}
+
+
+/* =========================
+   LOCATION
+========================= */
+
+.location-section {
+
+    background: #080c11;
+
+}
+
+
+.location-grid {
+
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 60px;
+
+    align-items: stretch;
+
+}
+
+
+.location-content h2 {
+
+    font-size: clamp(35px, 4vw, 52px);
+
+    line-height: 1.1;
+
+}
+
+
+.location-content h2 span {
+
+    display: block;
+
+    color: var(--muted);
+
+}
+
+
+.address {
+
+    margin: 35px 0;
+
+}
+
+
+.address strong {
+
+    color: var(--accent);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+}
+
+
+.address p {
+
+    color: var(--muted);
+
+    margin-top: 10px;
+
+    font-size: 14px;
+
+}
+
+
+.map-container {
+
+    min-height: 430px;
+
+    border: 1px solid var(--border);
+
+}
+
+
+.map-container iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    min-height: 430px;
+
+    border: 0;
+
+    filter: grayscale(1) invert(0.9) contrast(0.9);
+
+}
+
+
+/* =========================
+   QUOTE
+========================= */
+
+.quote-section {
+
+    padding: 130px 0;
+
+    background:
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(57, 213, 255, 0.09),
+            transparent 35%
+        );
+
+}
+
+
+.quote-wrapper {
+
+    display: grid;
+
+    grid-template-columns: 0.7fr 1.3fr;
+
+    gap: 90px;
+
+}
+
+
+.quote-heading h2 {
+
+    font-size: clamp(42px, 5vw, 65px);
+
+    line-height: 1;
+
+    letter-spacing: -3px;
+
+}
+
+
+.quote-heading h2 span {
+
+    display: block;
+
+    color: var(--accent);
+
+}
+
+
+.quote-heading p {
+
+    color: var(--muted);
+
+    margin-top: 20px;
+
+}
+
+
+.quote-form {
+
+    border: 1px solid var(--border);
+
+    background: rgba(10, 15, 20, 0.7);
+
+    padding: 35px;
+
+}
+
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+}
+
+
+.form-group {
+
+    margin-bottom: 22px;
+
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #b5bec7;
+
+    margin-bottom: 8px;
+
+    letter-spacing: 1px;
+
+    font-weight: 600;
+
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+
+    outline: none;
+
+    background: #080c10;
+
+    color: white;
+
+    font-size: 12px;
+
+    transition: 0.3s;
+
+}
+
+
+.form-group textarea {
+
+    resize: vertical;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: var(--accent);
+
+}
+
+
+.form-group select option {
+
+    background: #080c10;
+
+}
+
+
+.file-upload input {
+
+    display: none;
+
+}
+
+
+.file-upload label {
+
+    min-height: 100px;
+
+    border: 1px dashed #34414b;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    color: var(--muted);
+
+}
+
+
+.upload-icon {
+
+    color: var(--accent);
+
+    font-size: 25px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.submit-btn {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 17px;
+
+    background: var(--accent);
+
+    color: #031016;
+
+    font-weight: 800;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.submit-btn:hover {
+
+    box-shadow: 0 15px 40px rgba(57, 213, 255, 0.18);
+
+    transform: translateY(-2px);
+
+}
+
+
+.submit-btn span {
+
+    margin-left: 10px;
+
+}
+
+
+.form-message {
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: var(--accent);
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    border-top: 1px solid var(--border);
+
+    padding-top: 70px;
+
+    background: #030507;
+
+}
+
+
+.footer-grid {
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 50px;
+
+    padding-bottom: 60px;
+
+}
+
+
+.footer-brand p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    max-width: 300px;
+
+    margin-top: 20px;
+
+}
+
+
+.footer-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.footer-column h4 {
+
+    color: var(--accent);
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.footer-column a,
+.footer-column p {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.footer-column a:hover {
+
+    color: white;
+
+}
+
+
+.footer-bottom {
+
+    border-top: 1px solid var(--border);
+
+    padding: 20px 0;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #59636d;
+
+    font-size: 9px;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.js-enabled .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+body.js-enabled .reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .nav-links {
+
+        gap: 15px;
+
+    }
+
+    .hero-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .hero-visual {
+
+        min-height: 400px;
+
+    }
+
+    .about-grid,
+    .quality-container,
+    .location-grid,
+    .quote-wrapper {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .capabilities-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .why-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .footer-grid {
+
+        grid-template-columns: 2fr 1fr 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .nav-links {
+
+        position: fixed;
+
+        top: 78px;
+
+        left: 0;
+
+        width: 100%;
+
+        background: #06090d;
+
+        border-bottom: 1px solid var(--border);
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 25px;
+
+        transform: translateY(-120%);
+
+        transition: 0.4s;
+
+    }
+
+
+    .nav-links.open {
+
+        transform: translateY(0);
+
+    }
+
+
+    .menu-btn {
+
+        display: block;
+
+    }
+
+
+    .hero {
+
+        padding-top: 120px;
+
+    }
+
+
+    .hero h1 {
+
+        letter-spacing: -2px;
+
+    }
+
+
+    .hero-visual {
+
+        min-height: 340px;
+
+    }
+
+
+    .pcb-board {
+
+        width: 290px;
+        height: 220px;
+
+    }
+
+
+    .chip-main {
+
+        width: 80px;
+        height: 55px;
+
+        left: 105px;
+        top: 80px;
+
+    }
+
+
+    .floating-card {
+
+        transform: scale(0.8);
+
+    }
+
+
+    .card-top {
+
+        right: -20px;
+
+    }
+
+
+    .card-bottom {
+
+        left: -20px;
+
+    }
+
+
+    .section {
+
+        padding: 90px 0;
+
+    }
+
+
+    .capabilities-grid,
+    .why-grid,
+    .applications-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .application-item:nth-child(odd) {
+
+        border-right: none;
+
+    }
+
+
+    .quality-arrow {
+
+        display: none;
+
+    }
+
+
+    .quality-process {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .form-row {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+
+    .quote-form {
+
+        padding: 22px;
+
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        gap: 8px;
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .container {
+
+        width: 88%;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 45px;
+
+    }
+
+
+    .hero h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .pcb-board {
+
+        width: 250px;
+        height: 190px;
+
+    }
+
+
+    .chip-main {
+
+        left: 88px;
+
+        top: 68px;
+
+    }
+
+
+    .footer-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+</style>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar" id="navbar">
+
+        <div class="container nav-container">
+
+            <a href="#home" class="logo">
+                <span class="logo-mark">C</span>
+                <span>COSMIC</span>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="#home" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#quality">Quality</a>
+                <a href="#contact">Contact</a>
+
+                <a href="#quote" class="nav-quote">
+                    Request a Quote
+                </a>
+
+            </nav>
+
+            <button class="menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-grid"></div>
+
+            <div class="circuit-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="container hero-container">
+
+                <div class="hero-content reveal">
+
+                    <div class="eyebrow">
+                        <span class="pulse"></span>
+                        PCB ENGINEERING & MANUFACTURING
+                    </div>
+
+                    <h1>
+                        PRECISION PCB
+                        <span>ENGINEERING.</span>
+                    </h1>
+
+                    <h2>
+                        BUILT FOR YOUR NEXT
+                        ELECTRONIC PRODUCT.
+                    </h2>
+
+                    <p class="hero-description">
+                        PCB Design, Manufacturing & Assembly Solutions
+                        from Coimbatore.
+                    </p>
+
+                    <p class="hero-text">
+                        Established in <strong>2014</strong>, COSMIC provides
+                        PCB design, manufacturing and assembly solutions
+                        for businesses looking for reliable electronics
+                        manufacturing support.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#quote" class="btn btn-primary">
+                            Request a Quote
+                            <span>→</span>
+                        </a>
+
+                        <a href="#capabilities" class="btn btn-outline">
+                            Explore Capabilities
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PCB VISUAL -->
+
+                <div class="hero-visual reveal">
+
+                    <div class="pcb-board">
+
+                        <div class="pcb-chip chip-main">
+                            COSMIC
+                        </div>
+
+                        <div class="chip chip-one"></div>
+                        <div class="chip chip-two"></div>
+                        <div class="chip chip-three"></div>
+
+                        <div class="pcb-line line-one"></div>
+                        <div class="pcb-line line-two"></div>
+                        <div class="pcb-line line-three"></div>
+                        <div class="pcb-line line-four"></div>
+
+                        <div class="pcb-dot dot-one"></div>
+                        <div class="pcb-dot dot-two"></div>
+                        <div class="pcb-dot dot-three"></div>
+                        <div class="pcb-dot dot-four"></div>
+                        <div class="pcb-dot dot-five"></div>
+
+                    </div>
+
+                    <div class="floating-card card-top">
+                        <small>PRECISION</small>
+                        <strong>PCB ENGINEERING</strong>
+                    </div>
+
+                    <div class="floating-card card-bottom">
+                        <span class="status-dot"></span>
+                        <div>
+                            <small>Established</small>
+                            <strong>2014</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SCROLL -->
+
+            <a href="#about" class="scroll-indicator">
+                <span></span>
+                SCROLL TO EXPLORE
+            </a>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="section about-section" id="about">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <h2>
+                        Engineering Electronics.
+                        <span>Enabling Innovation.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="about-image reveal">
+
+                        <div class="image-placeholder">
+
+                            <div class="image-overlay"></div>
+
+                            <div class="image-label">
+                                <span>01</span>
+                                COSMIC PCB ENGINEERING
+                            </div>
+
+                            <div class="pcb-pattern">
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-content reveal">
+
+                        <p class="large-text">
+                            Established in <strong>2014</strong>,
+                            COSMIC is a Coimbatore-based PCB design
+                            and manufacturing company serving customers
+                            across a range of electronic applications.
+                        </p>
+
+                        <p>
+                            With experience in PCB designing,
+                            single-sided PCBs, double-sided PCBs,
+                            multilayer PCBs and PCB assembly,
+                            COSMIC aims to provide customers with a
+                            dependable manufacturing partner from
+                            design through production.
+                        </p>
+
+                        <p>
+                            Our goal is simple: deliver PCB solutions
+                            that meet our customers' technical
+                            requirements while maintaining consistent
+                            quality and dependable service.
+                        </p>
+
+                        <a href="#capabilities" class="text-link">
+                            Discover COSMIC
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CAPABILITIES ================= -->
+
+        <section class="section capabilities-section" id="capabilities">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <h2>
+                        From Concept
+                        <span>to Circuit.</span>
+                    </h2>
+
+                    <p>
+                        PCB solutions designed around your product
+                        requirements.
+                    </p>
+
+                </div>
+
+
+                <div class="capabilities-grid">
+
+                    <article class="capability-card reveal">
+
+                        <div class="card-number">01</div>
+
+                        <div class="capability-icon">
+                            ◈
+                        </div>
+
+                        <h3>PCB DESIGN</h3>
+
+                        <p>
+                            Professional PCB design support for
+                            electronic product development.
+                        </p>
+
+                        <span class="card-arrow">↗</span>
+
+                    </article>
+
+
+                    <article class="capability-card reveal">
+
+                        <div class="card-number">02</div>
+
+                        <div class="capability-icon">
+                            ◈
+                        </div>
+
+                        <h3>SINGLE-SIDED PCB</h3>
+
+                        <p>
+                            Solutions for applications requiring
+                            straightforward single-layer boards.
+                        </p>
+
+                        <span class="card-arrow">↗</span>
+
+                    </article>
+
+
+                    <article class="capability-card reveal">
+
+                        <div class="card-number">03</div>
+
+                        <div class="capability-icon">
+                            ◈
+                        </div>
+
+                        <h3>DOUBLE-SIDED PCB</h3>
+
+                        <p>
+                            Reliable double-sided PCB manufacturing
+                            for more complex circuit requirements.
+                        </p>
+
+                        <span class="card-arrow">↗</span>
+
+                    </article>
+
+
+                    <article class="capability-card reveal">
+
+                        <div class="card-number">04</div>
+
+                        <div class="capability-icon">
+                            ◈
+                        </div>
+
+                        <h3>MULTILAYER PCB</h3>
+
+                        <p>
+                            PCB solutions for high-density and more
+                            complex electronic designs.
+                        </p>
+
+                        <span class="card-arrow">↗</span>
+
+                    </article>
+
+
+                    <article class="capability-card reveal">
+
+                        <div class="card-number">05</div>
+
+                        <div class="capability-icon">
+                            ◈
+                        </div>
+
+                        <h3>PCB ASSEMBLY</h3>
+
+                        <p>
+                            Assembly solutions for customers requiring
+                            populated and production-ready boards.
+                        </p>
+
+                        <span class="card-arrow">↗</span>
+
+                    </article>
+
+
+                    <article class="capability-card reveal">
+
+                        <div class="card-number">06</div>
+
+                        <div class="capability-icon">
+                            ◈
+                        </div>
+
+                        <h3>PCB MANUFACTURING</h3>
+
+                        <p>
+                            Manufacturing support from design
+                            requirements through finished PCB production.
+                        </p>
+
+                        <span class="card-arrow">↗</span>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WORKFLOW ================= -->
+
+        <section class="section workflow-section" id="workflow">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <h2>
+                        One Journey.
+                        <span>One Manufacturing Partner.</span>
+                    </h2>
+
+                    <p>
+                        From your initial PCB requirement to the
+                        finished assembly, COSMIC works to simplify
+                        the electronics manufacturing process.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow">
+
+                    <div class="workflow-line"></div>
+
+
+                    <div class="workflow-step reveal">
+
+                        <span>01</span>
+
+                        <div>
+                            <small>START</small>
+                            <h3>YOUR REQUIREMENT</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-step reveal">
+
+                        <span>02</span>
+
+                        <div>
+                            <small>ENGINEERING</small>
+                            <h3>PCB DESIGN</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-step reveal">
+
+                        <span>03</span>
+
+                        <div>
+                            <small>VALIDATION</small>
+                            <h3>DESIGN REVIEW</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-step reveal">
+
+                        <span>04</span>
+
+                        <div>
+                            <small>PRODUCTION</small>
+                            <h3>PCB MANUFACTURING</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-step reveal">
+
+                        <span>05</span>
+
+                        <div>
+                            <small>ASSEMBLY</small>
+                            <h3>PCB ASSEMBLY</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-step reveal">
+
+                        <span>06</span>
+
+                        <div>
+                            <small>QUALITY</small>
+                            <h3>QUALITY CHECK</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="workflow-step reveal">
+
+                        <span>07</span>
+
+                        <div>
+                            <small>DELIVERY</small>
+                            <h3>FINAL DELIVERY</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WHY COSMIC ================= -->
+
+        <section class="section why-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <h2>
+                        Built Around
+                        <span>Your Requirements.</span>
+                    </h2>
+
+                </div>
+
+
+                <div class="why-grid">
+
+                    <div class="why-card reveal">
+
+                        <span>01</span>
+
+                        <h3>Experience Since 2014</h3>
+
+                        <p>
+                            Years of experience in PCB design
+                            and manufacturing.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card reveal">
+
+                        <span>02</span>
+
+                        <h3>Complete PCB Solutions</h3>
+
+                        <p>
+                            Design, manufacturing and assembly
+                            capabilities under one roof, where applicable.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card reveal">
+
+                        <span>03</span>
+
+                        <h3>Customer Focused</h3>
+
+                        <p>
+                            Solutions developed around customer
+                            requirements.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card reveal">
+
+                        <span>04</span>
+
+                        <h3>Quality Driven</h3>
+
+                        <p>
+                            A focus on consistent manufacturing
+                            and product quality.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card reveal">
+
+                        <span>05</span>
+
+                        <h3>Flexible Requirements</h3>
+
+                        <p>
+                            Solutions for different PCB types
+                            and application requirements.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card reveal">
+
+                        <span>06</span>
+
+                        <h3>Coimbatore Based</h3>
+
+                        <p>
+                            Strategically located in Saravanampatti,
+                            Coimbatore.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= APPLICATIONS ================= -->
+
+        <section class="section applications-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <h2>
+                        Electronics Across
+                        <span>Possibilities.</span>
+                    </h2>
+
+                    <p>
+                        Applications can be added here once
+                        verified with COSMIC.
+                    </p>
+
+                </div>
+
+
+                <div class="applications-grid">
+
+                    <div class="application-item reveal">
+                        <span>01</span>
+                        Industrial Electronics
+                    </div>
+
+                    <div class="application-item reveal">
+                        <span>02</span>
+                        Automation & Control
+                    </div>
+
+                    <div class="application-item reveal">
+                        <span>03</span>
+                        IoT Devices
+                    </div>
+
+                    <div class="application-item reveal">
+                        <span>04</span>
+                        Embedded Systems
+                    </div>
+
+                    <div class="application-item reveal">
+                        <span>05</span>
+                        Power Electronics
+                    </div>
+
+                    <div class="application-item reveal">
+                        <span>06</span>
+                        Consumer Electronics
+                    </div>
+
+                    <div class="application-item reveal">
+                        <span>07</span>
+                        Instrumentation
+                    </div>
+
+                    <div class="application-item reveal">
+                        <span>08</span>
+                        Electronic Product Development
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUALITY ================= -->
+
+        <section class="section quality-section" id="quality">
+
+            <div class="container quality-container">
+
+                <div class="quality-content reveal">
+
+
+                    <h2>
+                        QUALITY IS BUILT
+                        <span>INTO THE PROCESS.</span>
+                    </h2>
+
+                    <p>
+                        Every stage of the PCB journey contributes
+                        to delivering dependable results.
+                    </p>
+
+                </div>
+
+
+                <div class="quality-process reveal">
+
+                    <div class="quality-step">
+                        <span>01</span>
+                        <strong>Design Review</strong>
+                    </div>
+
+                    <div class="quality-arrow">→</div>
+
+                    <div class="quality-step">
+                        <span>02</span>
+                        <strong>Material Verification</strong>
+                    </div>
+
+                    <div class="quality-arrow">→</div>
+
+                    <div class="quality-step">
+                        <span>03</span>
+                        <strong>Manufacturing</strong>
+                    </div>
+
+                    <div class="quality-arrow">→</div>
+
+                    <div class="quality-step">
+                        <span>04</span>
+                        <strong>Assembly</strong>
+                    </div>
+
+                    <div class="quality-arrow">→</div>
+
+                    <div class="quality-step">
+                        <span>05</span>
+                        <strong>Inspection</strong>
+                    </div>
+
+                    <div class="quality-arrow">→</div>
+
+                    <div class="quality-step">
+                        <span>06</span>
+                        <strong>Final Quality Check</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LOCATION ================= -->
+
+        <section class="section location-section">
+
+            <div class="container location-grid">
+
+                <div class="location-content reveal">
+
+                    <h2>
+                        Built in Coimbatore.
+                        <span>Connected to Your Business.</span>
+                    </h2>
+
+                    <div class="address">
+
+                        <strong>COSMIC</strong>
+
+                        <p>
+                            Saravana Nagar, Visuvasapuram,<br>
+                            Sathy Road, Saravanampatti,<br>
+                            Coimbatore, Tamil Nadu, India.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=Saravanampatti+Coimbatore"
+                        target="_blank"
+                        class="btn btn-primary">
+
+                        View on Google Maps →
+                    </a>
+
+                </div>
+
+
+                <div class="map-container reveal">
+
+                    <iframe
+                        src="https://www.google.com/maps?q=Saravanampatti%2C%20Coimbatore%2C%20Tamil%20Nadu&output=embed"
+                        loading="lazy"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUOTE ================= -->
+
+        <section class="quote-section" id="quote">
+
+            <div class="container">
+
+                <div class="quote-wrapper">
+
+                    <div class="quote-heading reveal">
+
+                        
+
+                        <h2>
+                            Have a PCB
+                            <span>Requirement?</span>
+                        </h2>
+
+                        <p>
+                            Tell us about your project and our team
+                            will get back to you.
+                        </p>
+
+                    </div>
+
+
+                    <form class="quote-form reveal" id="quoteForm">
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Name *</label>
+
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Your name"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Company Name</label>
+
+                                <input
+                                    type="text"
+                                    name="company"
+                                    placeholder="Company name">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>Email *</label>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="your@email.com"
+                                    required>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Phone *</label>
+
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    placeholder="+91 XXXXX XXXXX"
+                                    required>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>PCB Type</label>
+
+                                <select name="pcbType">
+
+                                    <option value="">
+                                        Select PCB Type
+                                    </option>
+
+                                    <option>
+                                        Single-Sided PCB
+                                    </option>
+
+                                    <option>
+                                        Double-Sided PCB
+                                    </option>
+
+                                    <option>
+                                        Multilayer PCB
+                                    </option>
+
+                                    <option>
+                                        Not Sure
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>Quantity</label>
+
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    placeholder="Required quantity">
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Required Service</label>
+
+                            <select name="service">
+
+                                <option value="">
+                                    Select Service
+                                </option>
+
+                                <option>PCB Design</option>
+                                <option>PCB Manufacturing</option>
+                                <option>PCB Assembly</option>
+                                <option>Design + Manufacturing</option>
+                                <option>Complete PCB Solution</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Project Details</label>
+
+                            <textarea
+                                name="details"
+                                rows="5"
+                                placeholder="Tell us about your PCB requirement...">
+                            </textarea>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Upload Files</label>
+
+                            <div class="file-upload">
+
+                                <input
+                                    type="file"
+                                    id="fileInput"
+                                    accept=".zip,.rar,.pdf,.ger,.gbr,.sch,.brd">
+
+                                <label for="fileInput">
+
+                                    <span class="upload-icon">
+                                        ↑
+                                    </span>
+
+                                    <span id="fileName">
+                                        Upload Gerber / BOM /
+                                        PCB Design / Other
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-btn">
+
+                            REQUEST A QUOTE
+                            <span>→</span>
+
+                        </button>
+
+
+                        <div
+                            class="form-message"
+                            id="formMessage">
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container footer-grid">
+
+            <div class="footer-brand">
+
+                <a href="#home" class="logo">
+                    <span class="logo-mark">C</span>
+                    <span>COSMIC</span>
+                </a>
+
+                <p>
+                    Precision PCB engineering, manufacturing
+                    and assembly solutions from Coimbatore.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>EXPLORE</h4>
+
+                <a href="#about">About</a>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#quality">Quality</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>SERVICES</h4>
+
+                <a href="#capabilities">PCB Design</a>
+                <a href="#capabilities">PCB Manufacturing</a>
+                <a href="#capabilities">PCB Assembly</a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>LOCATION</h4>
+
+                <p>
+                    Saravanampatti,<br>
+                    Coimbatore,<br>
+                    Tamil Nadu, India.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="year"></span> COSMIC.
+                All Rights Reserved.
+            </p>
+
+            <p>
+                PCB Engineering & Manufacturing
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js">
+        document.body.classList.add("js-enabled");
+
+/* =========================
+   NAVBAR SCROLL EFFECT
+========================= */
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("open");
+
+});
+
+
+/* Close mobile menu after clicking */
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("open");
+
+    });
+
+});
+
+
+/* =========================
+   ACTIVE NAVIGATION
+========================= */
+
+const sections = document.querySelectorAll("section[id]");
+const navigationLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop - 150;
+
+        if (window.scrollY >= sectionTop) {
+
+            current = section.getAttribute("id");
+
+        }
+
+    });
+
+
+    navigationLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold: 0.12
+    }
+
+);
+
+
+revealElements.forEach(element => {
+
+    observer.observe(element);
+
+});
+
+
+/* =========================
+   FILE UPLOAD
+========================= */
+
+const fileInput = document.getElementById("fileInput");
+const fileName = document.getElementById("fileName");
+
+fileInput.addEventListener("change", () => {
+
+    if (fileInput.files.length > 0) {
+
+        fileName.textContent =
+            fileInput.files[0].name;
+
+    } else {
+
+        fileName.textContent =
+            "Upload Gerber / BOM / PCB Design / Other";
+
+    }
+
+});
+
+
+/* =========================
+   QUOTE FORM
+========================= */
+
+const quoteForm = document.getElementById("quoteForm");
+const formMessage = document.getElementById("formMessage");
+
+quoteForm.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const name =
+        quoteForm.querySelector('[name="name"]').value.trim();
+
+    const email =
+        quoteForm.querySelector('[name="email"]').value.trim();
+
+    const phone =
+        quoteForm.querySelector('[name="phone"]').value.trim();
+
+
+    if (!name || !email || !phone) {
+
+        formMessage.textContent =
+            "Please fill all required fields.";
+
+        return;
+
+    }
+
+
+    formMessage.textContent =
+        "Thank you! Your quote request has been received.";
+
+
+    quoteForm.reset();
+
+    fileName.textContent =
+        "Upload Gerber / BOM / PCB Design / Other";
+
+
+    setTimeout(() => {
+
+        formMessage.textContent = "";
+
+    }, 5000);
+
+});
+
+
+/* =========================
+   CURRENT YEAR
+========================= */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* =========================
+   PCB PARALLAX EFFECT
+========================= */
+
+const pcbBoard = document.querySelector(".pcb-board");
+
+window.addEventListener("mousemove", (event) => {
+
+    if (!pcbBoard) return;
+
+    const x =
+        (window.innerWidth / 2 - event.clientX) / 80;
+
+    const y =
+        (window.innerHeight / 2 - event.clientY) / 80;
+
+
+    pcbBoard.style.transform =
+        `rotate(-8deg) translate(${x}px, ${y}px)`;
+
+});</script>
+
+</body>
+</html>
